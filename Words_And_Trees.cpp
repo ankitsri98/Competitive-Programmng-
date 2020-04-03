@@ -36,7 +36,7 @@ int main(){
         adj[x-1].pb(y-1);
         adj[y-1].pb(x-1);
     }
-    dfs(0);
+    dfs(0);//by simply calling dfs we have maintained all string a subtree can produce and then solved queries
     string s;
     while(q--){
         cin>>z>>s;
