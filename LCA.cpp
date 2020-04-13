@@ -48,8 +48,8 @@ ll LCA(ll a, ll b){
         if(lca[a][i]!=-1 && (lca[a][i]!=lca[b][i])){
             a=lca[a][i],b=lca[b][i];//trying to reach one level below lca
         }
-        return lca[a][0];
     }
+    return lca[a][0];
 }
 int main()
 {
