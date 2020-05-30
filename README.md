@@ -1,2 +1,2 @@
 # Competitive-Programmng-
-This contains  ALGORITHMS and solutions to some coding problems on different platform .
+This contains repo. contains code of some famous ALGORITHMS  .
