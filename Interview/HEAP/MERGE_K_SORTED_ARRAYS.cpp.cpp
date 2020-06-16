@@ -6,7 +6,7 @@ vector< int  > merge_k_sorted(vector< vector<int > > arr){
     vector<int > result;
     priority_queue< custompair, vector<custompair> , greater<custompair>  > pq;
     for(int i=0;i<arr.size();i++){
-        pq.push({arr[i][0],{i,0}});
+        pq.push({arr[i][0],{i,0}});// array element , { i'th array,  index} 
     }
     while(!pq.empty()){
         custompair p =pq.top;
