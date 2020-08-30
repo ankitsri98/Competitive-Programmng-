@@ -42,5 +42,5 @@ int main() {
         adj[x].push_back(y);
         //adj[y].push_back(x);
     }
-    topo_sort(n);4
+    topo_sort(n);
 }
