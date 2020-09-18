@@ -31,5 +31,6 @@ int main() {
 	s->draw();
 	s=&r;
 	s->draw();
+	
 	return 0;
 }
