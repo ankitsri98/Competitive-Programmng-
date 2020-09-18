@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//No need to show constructor just show the process
 class shape{
 public:
 	void A(){
