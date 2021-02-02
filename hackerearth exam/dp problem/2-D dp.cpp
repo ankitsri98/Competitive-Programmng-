@@ -73,7 +73,8 @@ void solve(){
     //for filling further new elements we add this number to the sequence of len-1 and prev. elemnt is a factor
     
     REP(i,1,upto+1){
-        arr[1][i]=1;
+        arr[1][i]=1;//1 LENGTH KI SEQUENCE JAB HAR TYPE KA 1 ELEMENT HOGA :- MEANS FOR 1 LEN 3 ELEMENTS :- ANS=3 [1],[2],[3]  SO AT[1][1]=1 AT[1][2]=1 AT[1][3]=1 
+     //TO FIND ALL U HAVE TO TAKE SUM OF ALL LIKE TOTAL=AT[1][1] + AT[1][2] + AT[1][3]; I.E =3
     }
     REP(i,2,len+1){
         REP(j,1,upto+1){
@@ -95,7 +96,7 @@ void solve(){
         cout<<endl;
     }*/
     int tot=0;
-    REP(i,1,upto+1){
+    REP(i,1,upto+1){// TAKE TOTAL OF LEN JAB 1 ELE. THA JAB 2 THE JAB 3 ..4..5..6 THE 
         tot+=arr[len][i];
     }
     //summing up for all elements
