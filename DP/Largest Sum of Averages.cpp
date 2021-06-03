@@ -9,6 +9,10 @@ double recur(int i,int c,int k,int n){
     
     double ans=INT_MIN;
     for(int j=i;j<n;j++){
+        //HAR ITH POSITION PAR MAINE YE KIYA KI ITH ELEMENT KO ADD KIYA(YAANI PURAANE SET ME RAKHA) 
+        // AUR DOOSRI CHOICE YE HAI KI MAINE USKE AAGE EK NAYA SET CHALU KARDIYA
+        // YE MAINE POORI ARRA KE LIYE KIYA ISKO TERMINATE KARNE KI CONDITION LAGAI HUI HAI
+        // AUR NUMBER OF SET AGAR K HOGAI TOH MAINE CONTINUE KIYA JISSE KI AB ISS SET ME SAARE ELEMENTS AAJAIN
         int x= (i==0)? pref[j]: pref[j]-pref[i-1];
         double y=x*1.0/(j-i+1);
         if(c==k){
