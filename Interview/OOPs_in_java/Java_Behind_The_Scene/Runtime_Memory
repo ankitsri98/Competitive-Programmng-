@@ -1,0 +1,9 @@
+
+* so when we create a class it only have the structure and if we try to run it, is shows exception that shows you have not provided instructions 
+* In java to run any class we have to provide instructions and it has to be passed inside method.
+
+
+* There are two memory locations that become reserved for our job application to run successfully.
+* basically this memory is our ram.
+* One memory area is referred to as a stack and other is referred to as a heap.
+
