@@ -1,0 +1,16 @@
+package com.personal.oops;
+
+public class Zoo {
+    public static void main(String[] arg) {
+
+        Animal animal1 = new Animal(12, "M", 12);
+        animal1.eat();
+
+        //OBJECTS exist during application runtime
+        Bird brid1 = new Bird();
+        brid1.fly();
+
+        Fish fish1 = new Fish();
+        fish1.swim();
+    }
+}
