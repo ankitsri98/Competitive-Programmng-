@@ -1,5 +1,6 @@
 package com.personal.oops;
 
+//This is a Abstract class 
 public abstract class Animal {
 
     int age;
@@ -19,6 +20,6 @@ public abstract class Animal {
     public void sleep() {
         System.out.println("sleeping...");
     }
-
+    //Here is the abstract method
     public abstract void move();
 }
