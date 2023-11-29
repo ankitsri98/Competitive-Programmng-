@@ -1,0 +1,211 @@
+Git 
+
+git branch --set-upstream-to origin/naws-mainline
+
+git branch --set-upstream-to origin/naws  
+
+
+
+git branch --set-upstream-to  origin/onboardCmsNAWS
+brazil-recursive-cmd -all brazil-build
+Git pull —rebase
+
+To cherry pick a change 
+
+Make workspace 
+put your version set  
+Make a branch
+Go inside it Set it 
+to upstream like this :-  git branch --set-upstream-to origin/AmabotWeblab  
+Now do:    git fetch -> git pull —rebase
+
+Changes now came into your workspace
+
+Now checkout to another branch
+
+And do :  git cherry-pick [commitid]     commit id  -> get from git log top one 
+
+Way to raise CR for multiple package 
+
+cr --new-review --include "MASDiscoveryServiceModel[HEAD^],MASDSCore[HEAD^],MASDiscoveryService[HEAD^]"      TO RAISE THE FIRST REVISION 
+
+cr -r  76516645 --include "MASDiscoveryServiceModel[HEAD^],MASDSCore[HEAD^],MASDiscoveryService[HEAD^]"      TO RAISE THE 2nd or 3rd … REVISION 
+
+cr --new-review  --include "MASDiscoveryServiceCodeDeployTransform[HEAD^],MASDiscoveryServiceCDK[HEAD^]”
+
+cr --new-review --include “EpsilonAuthenticationLib[HEAD^]”
+
+
+cr --new-review  --include "OPFTenantConfig_MASDeviceServiceEU[HEAD^],OPFTenantConfig_MASDeviceServiceFE[HEAD^],OPFTenantConfig_MASDeviceServiceNA[HEAD^]”
+
+
+cr -r 101920264 include “MASDiscoveryService[HEAD^]”
+
+cr -r 99914321 include "MASDiscoveryService[HEAD^]" 
+
+
+cr -r 97553664 include "MASDiscoveryServiceModel[cea0ab76262595316ef00cf5ccbc7ee0fceba625:cf32536d2c5256cefb09d0fb00a529fd974563fa]” 
+
+3rd approach :  cr -r CR-97553664 --range a455bdb:b5b0684 
+ 
+1st range is previous and 2nd is the latest 
+
+
+cr --new-review --include "MASDiscoveryServiceAlarms[HEAD^],MASDiscoveryServiceAlarmConstants[HEAD^]” 
+
+cr  -r 98598581 --include "MASDSCore[HEAD^],MASDiscoveryService[HEAD^]” 
+
+
+cr -new -i “MASDiscoveryServiceAlarms[d0f9815b05bbadbeea616441f0984c51d0cb6059:37ce9522dcc1eb43e686c2dd41349d022569c28a]” 
+
+cr -new -i “MASDiscoveryServiceModel[a455bdb3aba80244acbe03e0b697ae09af2a8388:cea0ab76262595316ef00cf5ccbc7ee0fceba625]” 
+
+First is the older ID and 2nd is the newest ID depending till where u need to take 
+
+
+// delete branch locally
+git branch -d localBranchName
+
+// delete branch remotely
+git push origin --delete remoteBranchName
+
+
+
+How to UNDO Unstaged/uncommitted changes 
+
+ git restore .  
+
+TO UNDO a Commit : 
+
+git reset HEAD~   
+
+
+To Undo Git ADD
+
+git reset [file]
+
+To merge a code 
+
+
+git checkout mainline 
+
+git fetch 
+
+git pull —rebase
+
+git cherry-pick cb1035fcb92843eb2aa6ffaad302423d51532ed2    :  bring changes into mainline 
+
+Pushing to mainline :   git push -u origin mainline.  
+
+
+How to Squash Multiple Commits into a single one 
+
+1. Look at the commits which are yours, count the numbers for EX- its 3   use Command -> git log --oneline -5            
+2. git rebase -i HEAD~3. This means it will club top 3 into 1 
+3. After executing this will open a some script -> Click i to enter into INSERT mode -> now there you can see the same no. of commits like 3 with names(PICK) -> LEAVE first 
+        For  second and third replace ‘PICK’ with ‘squash’  -> click esc -> click :wq 
+4. Now again some script will open to update your commit name  -> use # for commenting names for 2nd 3rd and we can use any name for 1st commit too.
+5. Esc -> :wq
+6. Now it will be  clubbed to one commit . 
+
+Another way to Squash commits before raising CR
+
+1. Suppose you need to create a squashed new branch from the one you are in ( where build is succeeding )
+2. Checkout to the new branch
+3. git reset --soft HEAD~3   here 3 is the number from the start how much commit you want to pick.  ————— can also use git reset -I [commit ID jiske upar ke squash Karne hain]
+4. After this you can git log --oneline -3 to check that naw mainline commit will be on top
+5. So now do -> git status 
+6. Commit the changes 
+7. Push the changes and again build to check if everything is fine 
+
+How to raise the single CR for Multiple packaged 
+
+git reset --hard 086024( this Id is for 2nd one till where ,above which you want to remove commits )       
+
+Inside Workspace/Src -> git —all  -> if want to create new. -> git -new—review —all
+
+cr --include "MASDiscoveryServiceModel[HEAD^],MASDSCore[HEAD^],MASDiscoveryService[HEAD^]"
+
+Run this command 
+If this error occurs :- Can't update CR-76509309 because it doesn't exist. Maybe the wrong '-r' argument? 
+
+Then use  : cr --new-review --include "MASDiscoveryServiceModel[HEAD^],MASDSCore[HEAD^],MASDiscoveryService[HEAD^]"
+
+
+Resolve This Error 
+
+To ssh://git.amazon.com:2222/pkg/MASDSCore
+ ! [rejected]            MadeChanges -> MadeChanges (non-fast-forward)
+error: failed to push some refs to 'ssh://git.amazon.com:2222/pkg/MASDSCore'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Means ->  u have made some changes and trying to push on local but there are commits on remote which are not in your local so u need to bring them from remote to local
+And then push the current changes .
+
+1. git branch -vv -> will show ur branches with origin -> your private branch on which you are pushing should be origin/Madechanges -> git branch -u origin/MadeChanges 
+2. Now bring the changes to your branch  by -> git pull —rebase
+3. Now git push
+
+Resolve This Error 
+
+srivastz@88665a448f45 MASDSCore % git push 
+fatal: The upstream branch of your current branch does not match
+the name of your current branch.  To push to the upstream branch
+on the remote, use
+
+    git push origin HEAD:mainline
+
+To push to the branch of the same name on the remote, use
+
+    git push origin HEAD
+
+In below one look at the head where its pointing and it will be pushing to your local branch 
+
+In above one it will be pushing to your mainline don’t use it in some cases u need to do ->. git push origin HEAD:[current branch name] 
+
+
+How to revert back the changes from mainline 
+
+1. git checkout mainline 
+2. git pull origin mainline 
+3. git log --oneline -5  
+4. git revert [comit ID] for all u want to revert .
+5. 
+
+For NAWS Version set 
+
+1. Load VS then package 
+2. Select the branch “naws-mainline” from git log in IntelliJ
+3. Now build it 
+4. On dev-desk when there is Version conflict then -> Checkout to the new branch -> git fetch -> git pull —rebase -> build it 
+
+Deployment on NAWS
+
+1. Now packages is loaded in dev desk
+2. For the service -> go to .sh file in scripts of the service -> select service package. And code deploy package  -> also load the CDK package 
+3. First build code deploy then CDK
+4. Run .sh file corresponding to a region -> deployment is started 
+5. Go to the “code deploy” inside the aws account -> see your deployment  -> open “Instance” in the bottom and connect to terminal which acts like terminal to check logs.
+
+If u want to go back to some commit where things were working fine 
+
+1. Git reset [commit ID]
+2. Now prev commits changes are unstaged means red you need to commit those changes 
+
+If u want those changes to not use now and move to another branch and later want them :
+
+1. Git add .
+2. Git stash
+3. When want back just : git stash pop
+4. If you don’t want anymore use : git stash clear
+
+1. HEAD shows that all the commits will be made to this branch
+2. 
+3. 
+
+MERGE CONFLICT:
+
+Accept there’s are : changes from server right pane 
