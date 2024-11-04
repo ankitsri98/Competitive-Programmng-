@@ -11,3 +11,10 @@ class Solution {
         return distinctWays(n, dp);
     }
 }
+
+
+    Base cases:
+        If i = 1, distinctWays(1) = 1
+        If i = 2, distinctWays(2) = 2
+
+    Recursive case: For i > 2: distinctWays(i) = distinctWays(i-1) + distinctWays(i-2)
