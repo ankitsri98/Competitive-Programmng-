@@ -1,1 +1,33 @@
+@startuml
+
+title **PROBLEM: Code Duplication To Be Solved With Strategy Pattern**\n
+
+abstract class Vehicle {
+  + drive()
+  + display()
+}
+
+class SportyVehicle {
+  + drive() { special drive } // Duplicate code
+}
+
+class PassengerVehicle {
+  + drive() { Normal drive }
+}
+
+class OffRoadVehicle {
+  + drive() { special drive } // Duplicate code
+}
+
+Vehicle <|-- SportyVehicle
+Vehicle <|-- PassengerVehicle 
+Vehicle <|-- OffRoadVehicle
+
+note right of SportyVehicle: "Special capability"
+note right of PassengerVehicle: "Normal capability"
+note right of OffRoadVehicle: "Special capability"
+
+@enduml
+
+
 
