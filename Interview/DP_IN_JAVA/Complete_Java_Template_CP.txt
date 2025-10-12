@@ -1,0 +1,274 @@
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Solution {
+    
+    // Constants
+    static final long MOD = 1000000007L;
+    static final long MOD1 = 998244353L;
+    static final long INF = (long) 1e18;
+    static final double PI = 3.141592653589793238462;
+    
+    // Fast I/O
+    static BufferedReader br;
+    static PrintWriter out;
+    static StringTokenizer st;
+    
+    // Debug flag - set to false for online judges
+    static final boolean DEBUG = true;
+    
+    // Debug methods - equivalent to C++ template functions
+    static void debug(Object... objects) {
+        if (!DEBUG) return;
+        System.err.print("DEBUG: ");
+        for (int i = 0; i < objects.length; i++) {
+            if (i > 0) System.err.print(" ");
+            _print(objects[i]);
+        }
+        System.err.println();
+    }
+    
+    static void _print(Object obj) {
+        if (obj == null) {
+            System.err.print("null");
+        } else if (obj instanceof Integer || obj instanceof Long || 
+                   obj instanceof Double || obj instanceof Float ||
+                   obj instanceof Character || obj instanceof String ||
+                   obj instanceof Boolean) {
+            System.err.print(obj);
+        } else if (obj instanceof int[]) {
+            _print((int[]) obj);
+        } else if (obj instanceof long[]) {
+            _print((long[]) obj);
+        } else if (obj instanceof double[]) {
+            _print((double[]) obj);
+        } else if (obj instanceof char[]) {
+            _print((char[]) obj);
+        } else if (obj instanceof List<?>) {
+            _print((List<?>) obj);
+        } else if (obj instanceof Set<?>) {
+            _print((Set<?>) obj);
+        } else if (obj instanceof Map<?, ?>) {
+            _print((Map<?, ?>) obj);
+        } else if (obj instanceof Map.Entry<?, ?>) {
+            _print((Map.Entry<?, ?>) obj);
+        } else {
+            System.err.print(obj.toString());
+        }
+    }
+    
+    // Array printing methods
+    static void _print(int[] arr) {
+        System.err.print("[ ");
+        for (int x : arr) {
+            System.err.print(x + " ");
+        }
+        System.err.print("]");
+    }
+    
+    static void _print(long[] arr) {
+        System.err.print("[ ");
+        for (long x : arr) {
+            System.err.print(x + " ");
+        }
+        System.err.print("]");
+    }
+    
+    static void _print(double[] arr) {
+        System.err.print("[ ");
+        for (double x : arr) {
+            System.err.print(x + " ");
+        }
+        System.err.print("]");
+    }
+    
+    static void _print(char[] arr) {
+        System.err.print("[ ");
+        for (char x : arr) {
+            System.err.print(x + " ");
+        }
+        System.err.print("]");
+    }
+    
+    // Collection printing methods
+    static void _print(List<?> list) {
+        System.err.print("[ ");
+        for (Object obj : list) {
+            _print(obj);
+            System.err.print(" ");
+        }
+        System.err.print("]");
+    }
+    
+    static void _print(Set<?> set) {
+        System.err.print("[ ");
+        for (Object obj : set) {
+            _print(obj);
+            System.err.print(" ");
+        }
+        System.err.print("]");
+    }
+    
+    static void _print(Map<?, ?> map) {
+        System.err.print("[ ");
+        for (Map.Entry<?, ?> entry : map.entrySet()) {
+            _print(entry);
+            System.err.print(" ");
+        }
+        System.err.print("]");
+    }
+    
+    static void _print(Map.Entry<?, ?> entry) {
+        System.err.print("{");
+        _print(entry.getKey());
+        System.err.print(",");
+        _print(entry.getValue());
+        System.err.print("}");
+    }
+    
+    // Utility methods (equivalent to C++ macros)
+    static int sz(Collection<?> c) { return c.size(); }
+    static int sz(Map<?, ?> m) { return m.size(); }
+    static int sz(String s) { return s.length(); }
+    static int sz(int[] arr) { return arr.length; }
+    static int sz(long[] arr) { return arr.length; }
+    
+    static long setBits(long n) { return Long.bitCount(n); }
+    
+    // Pair class (equivalent to C++ pair)
+    static class Pair<T, U> {
+        T first;
+        U second;
+        
+        Pair(T first, U second) {
+            this.first = first;
+            this.second = second;
+        }
+        
+        @Override
+        public String toString() {
+            return "(" + first + "," + second + ")";
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if (!(obj instanceof Pair)) return false;
+            Pair<?, ?> other = (Pair<?, ?>) obj;
+            return Objects.equals(first, other.first) && Objects.equals(second, other.second);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Objects.hash(first, second);
+        }
+    }
+    
+    static <T, U> Pair<T, U> mp(T first, U second) {
+        return new Pair<>(first, second);
+    }
+    
+    // Fast I/O methods
+    static void initIO() {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        out = new PrintWriter(System.out);
+    }
+    
+    static void initIO(String inputFile, String outputFile) throws IOException {
+        br = new BufferedReader(new FileReader(inputFile));
+        out = new PrintWriter(new FileWriter(outputFile));
+    }
+    
+    static String next() throws IOException {
+        while (st == null || !st.hasMoreTokens()) {
+            st = new StringTokenizer(br.readLine());
+        }
+        return st.nextToken();
+    }
+    
+    static int nextInt() throws IOException {
+        return Integer.parseInt(next());
+    }
+    
+    static long nextLong() throws IOException {
+        return Long.parseLong(next());
+    }
+    
+    static double nextDouble() throws IOException {
+        return Double.parseDouble(next());
+    }
+    
+    static String nextLine() throws IOException {
+        return br.readLine();
+    }
+    
+    static void print(Object obj) {
+        out.print(obj);
+    }
+    
+    static void println(Object obj) {
+        out.println(obj);
+    }
+    
+    static void println() {
+        out.println();
+    }
+    
+    // Sorting utilities
+    static void sort(int[] arr) {
+        Arrays.sort(arr);
+    }
+    
+    static void sort(long[] arr) {
+        Arrays.sort(arr);
+    }
+    
+    static <T extends Comparable<T>> void sort(List<T> list) {
+        Collections.sort(list);
+    }
+    
+    static void reverse(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n / 2; i++) {
+            int temp = arr[i];
+            arr[i] = arr[n - 1 - i];
+            arr[n - 1 - i] = temp;
+        }
+    }
+    
+    static <T> void reverse(List<T> list) {
+        Collections.reverse(list);
+    }
+    
+    // Min/Max utilities
+    static int min(int a, int b) { return Math.min(a, b); }
+    static long min(long a, long b) { return Math.min(a, b); }
+    static int max(int a, int b) { return Math.max(a, b); }
+    static long max(long a, long b) { return Math.max(a, b); }
+    
+    // Main method
+    public static void main(String[] args) throws IOException {
+        initIO();
+        
+        // Your code here
+        // Example usage of debug:
+        List<Integer> vec = Arrays.asList(1, 2, 3, 4, 5);
+        debug("vec", vec);
+        
+        Map<String, Integer> map = new HashMap<>();
+        map.put("hello", 1);
+        map.put("world", 2);
+        debug("map", map);
+        
+        Set<Integer> set = new TreeSet<>(Arrays.asList(3, 1, 4, 1, 5));
+        debug("set", set);
+        
+        Pair<Integer, String> p = mp(42, "answer");
+        debug("pair", p);
+        
+        int[] arr = {1, 2, 3, 4, 5};
+        debug("array", arr);
+        
+        out.close();
+    }
+}
