@@ -1,0 +1,203 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    static final int MOD = 1000000007;
+    static final int MOD1 = 998244353;
+    static final long INF = (long) 1e18;
+    static final String NEWLINE = "\n";
+    static final double PI = 3.141592653589793238462;
+
+    static class Debug {
+        private static final boolean ONLINE_JUDGE = System.getProperty("ONLINE_JUDGE") != null;
+        private static PrintWriter pw;
+        
+        static {
+            try {
+                if (!ONLINE_JUDGE) {
+                    pw = new PrintWriter(new FileWriter("debug.txt"));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Basic data types
+        public static void print(String name, Object value) {
+            if (!ONLINE_JUDGE && pw != null) {
+                pw.println(name + " = " + value);
+                pw.flush();
+            }
+        }
+
+        // For arrays
+        public static <T> void print(String name, T[] arr) {
+            if (!ONLINE_JUDGE && pw != null) {
+                pw.print(name + " = [ ");
+                for (T item : arr) {
+                    _print(item);
+                    pw.print(" ");
+                }
+                pw.println("]");
+                pw.flush();
+            }
+        }
+
+        // For primitive arrays
+        public static void print(String name, int[] arr) {
+            if (!ONLINE_JUDGE && pw != null) {
+                pw.print(name + " = [ ");
+                for (int item : arr) {
+                    _print(item);
+                    pw.print(" ");
+                }
+                pw.println("]");
+                pw.flush();
+            }
+        }
+
+        public static void print(String name, long[] arr) {
+            if (!ONLINE_JUDGE && pw != null) {
+                pw.print(name + " = [ ");
+                for (long item : arr) {
+                    _print(item);
+                    pw.print(" ");
+                }
+                pw.println("]");
+                pw.flush();
+            }
+        }
+
+        // For Collections
+        public static <T> void print(String name, Collection<T> collection) {
+            if (!ONLINE_JUDGE && pw != null) {
+                pw.print(name + " = [ ");
+                for (T item : collection) {
+                    _print(item);
+                    pw.print(" ");
+                }
+                pw.println("]");
+                pw.flush();
+            }
+        }
+
+        // For Maps
+        public static <K, V> void print(String name, Map<K, V> map) {
+            if (!ONLINE_JUDGE && pw != null) {
+                pw.print(name + " = [ ");
+                for (Map.Entry<K, V> entry : map.entrySet()) {
+                    pw.print("{");
+                    _print(entry.getKey());
+                    pw.print(",");
+                    _print(entry.getValue());
+                    pw.print("} ");
+                }
+                pw.println("]");
+                pw.flush();
+            }
+        }
+
+        // For Pair class
+        public static <T, U> void print(String name, Pair<T, U> pair) {
+            if (!ONLINE_JUDGE && pw != null) {
+                pw.print(name + " = {");
+                _print(pair.first);
+                pw.print(",");
+                _print(pair.second);
+                pw.println("}");
+                pw.flush();
+            }
+        }
+
+        // Helper method for printing individual elements
+        private static void _print(Object obj) {
+            if (obj == null) {
+                pw.print("null");
+                return;
+            }
+            if (obj instanceof Collection<?>) {
+                Collection<?> collection = (Collection<?>) obj;
+                pw.print("[ ");
+                for (Object item : collection) {
+                    _print(item);
+                    pw.print(" ");
+                }
+                pw.print("]");
+            } else if (obj instanceof Map<?, ?>) {
+                Map<?, ?> map = (Map<?, ?>) obj;
+                pw.print("[ ");
+                for (Map.Entry<?, ?> entry : map.entrySet()) {
+                    pw.print("{");
+                    _print(entry.getKey());
+                    pw.print(",");
+                    _print(entry.getValue());
+                    pw.print("} ");
+                }
+                pw.print("]");
+            } else if (obj instanceof Pair<?, ?>) {
+                Pair<?, ?> pair = (Pair<?, ?>) obj;
+                pw.print("{");
+                _print(pair.first);
+                pw.print(",");
+                _print(pair.second);
+                pw.print("}");
+            } else {
+                pw.print(obj);
+            }
+        }
+    }
+
+    // Utility Pair class (since Java doesn't have one built-in)
+    static class Pair<T, U> {
+        T first;
+        U second;
+
+        public Pair(T first, U second) {
+            this.first = first;
+            this.second = second;
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            if (System.getProperty("ONLINE_JUDGE") == null) {
+                System.setIn(new FileInputStream("input.txt"));
+                System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+            }
+        } catch (Exception e) {
+            System.err.println("Error");
+        }
+
+        Scanner sc = new Scanner(System.in);
+        
+        // Example usage:
+        int n = 10;
+        Debug.print("n", n);  // n = 10
+
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+        Debug.print("list", list);  // list = [ 1 2 3 ]
+
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(1, "one");
+        map.put(2, "two");
+        Debug.print("map", map);  // map = [ {1,one} {2,two} ]
+
+        Pair<Integer, String> pair = new Pair<>(1, "one");
+        Debug.print("pair", pair);  // pair = {1,one}
+
+        Set<Integer> set = new HashSet<>(Arrays.asList(1, 2, 3));
+        Debug.print("set", set);  // set = [ 1 2 3 ]
+
+        int[][] matrix = {{1, 2}, {3, 4}};
+        for (int[] row : matrix) {
+            Debug.print("row", row);  // row = [ 1 2 ] \n row = [ 3 4 ]
+        }
+
+        sc.close();
+    }
+
+    // Add your solution code here
+    static void solve() {
+        // Your solution code
+    }
+}
